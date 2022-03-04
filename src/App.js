@@ -11,6 +11,7 @@ export default function App() {
     <Router>
       <div>
         <Navbar />
+        <Applications />
         <Routes>
           <Route exact path='/' component={Users} />
           <Route exact path='/applications' component={Applications} />

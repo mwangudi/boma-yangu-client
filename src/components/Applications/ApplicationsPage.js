@@ -45,15 +45,13 @@ const ApplicationList = () => {
   }, [])
   
   const GetApplications = () => {
-      //setApplications(applicationData)
-      //console.log(applicationData)
+      
+      setApplications(applicationData)
   }
 
   const ViewApplication = id => {
     window.location = '/view-application/'+id
   }
-
- console.log(applications);
 
   return (
     <div className={classes.root}>
@@ -70,26 +68,30 @@ const ApplicationList = () => {
           <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="right">ID</TableCell>
-                <TableCell align="center">Avatar</TableCell>
-                <TableCell align="left">First</TableCell>
-                <TableCell align="left">Last</TableCell>
-                <TableCell align="left">Username</TableCell>
+                <TableCell align="right">ApplicationID</TableCell>
+                <TableCell align="left">Application Type</TableCell>
+                <TableCell align="left">Applicant</TableCell>
+                <TableCell align="left">National ID</TableCell>
+                <TableCell align="left">Nationality</TableCell>
+                <TableCell align="left">Avatar</TableCell>
+                <TableCell align="left">Date of Submission</TableCell>
                 <TableCell align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {applications.map((application) => (
-                <TableRow key={application.id}>
-                  <TableCell align="right">{application.id}</TableCell>
-                  <TableCell align="center">
+                <TableRow key={application.applicationDetails.applicationId}>
+                  <TableCell align="right">{application.applicationDetails.applicationId}</TableCell>
+                  <TableCell align="left">{application.applicationDetails.applicationType}</TableCell>
+                  <TableCell align="left">{application.personalDetails.surname +' '+application.personalDetails.otherNames}</TableCell>
+                  <TableCell align="left">{application.personalDetails.idNumber}</TableCell>
+                  <TableCell align="left">{application.personalDetails.nationality}</TableCell>
+                  <TableCell align="left">
                     <Box display="flex" justifyContent="center">
                       <Avatar src={application.avatar} />
                     </Box>
                   </TableCell>
-                  <TableCell align="left">{application.fname}</TableCell>
-                  <TableCell align="left">{application.lname}</TableCell>
-                  <TableCell align="left">{application.username}</TableCell>
+                  <TableCell align="left">{application.applicationDetails.submissionDatetime}</TableCell>
                   <TableCell align="center">
                     <ButtonGroup color="primary" aria-label="outlined primary button group">
                       <Button onClick={() => ViewApplication(application.id)}>View</Button>
